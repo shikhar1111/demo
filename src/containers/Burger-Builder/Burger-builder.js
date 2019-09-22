@@ -7,8 +7,12 @@ class Burger_Builder extends React.Component{
         
         return(
             <Aux>
-                <div>{this.props.title}</div>
-                <div>integredients</div>
+                <div>
+                    {this.props.title}
+                </div>
+                <div>
+                    {this.props.author}
+                </div>
             </Aux>
         );
     }
