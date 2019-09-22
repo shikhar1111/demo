@@ -10,13 +10,20 @@ class layout extends Component {
     componentDidUpdate(){
         if(this.props.id){
             if(!this.state.loaded || (this.state.loaded && this.state.loaded.id !== this.props.id)){
-        axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id).then(response=>{
-            console.log(response);
+        axios.get('/posts/' + this.props.id).then(response=>{
+            // console.log(response);
             this.setState({loaded:response.data});
         });
         }
         }
     }
+
+    deletePostHandler=()=>{
+        axios.delete('/posts/' + this.props.id).then(response=>{
+            console.log(response);
+        })
+    }
+
     render(){
         let post = <p>Please select a post</p>;
         if(this.props.id){
@@ -26,9 +33,9 @@ class layout extends Component {
             post = (
                 <div className="fullpost">
                     <h1>{this.state.loaded.title}</h1>
-                    <p>{this.state.loaded.author}</p>
+                    <p>{this.state.loaded.body}</p>
                     <div className="edit">
-                        <button className="delete">Delete</button>
+                        <button className="delete" onClick={this.deletePostHandler}>Delete</button>
                     </div>
                 </div>
             )
