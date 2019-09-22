@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from './components/Layout/Layout';
 import Burger from './containers/Burger-Builder/Burger-builder';
+import Newpost from './components/Newpost/Newpost';
 import axios from "axios";
 
 class App extends React.Component {
@@ -18,7 +19,7 @@ componentDidMount(){
         }
       })
     this.setState({posts:updatedPosts});
-        console.log(response);
+        // console.log(response);
     })
 }
 
@@ -39,7 +40,7 @@ postSelectedHandler=(id)=>{
         {/* <Layout></Layout> */}
         {posts}
         <Layout id={this.state.selectedPostId}/>
-
+        <Newpost />
           {/* <p>hello</p> */}
       </div>
     );

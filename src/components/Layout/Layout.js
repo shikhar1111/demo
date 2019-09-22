@@ -9,12 +9,14 @@ class layout extends Component {
     }
     componentDidUpdate(){
         if(this.props.id){
+            if(!this.state.loaded || (this.state.loaded && this.state.loaded.id !== this.props.id)){
         axios.get('https://jsonplaceholder.typicode.com/posts/' + this.props.id).then(response=>{
             console.log(response);
             this.setState({loaded:response.data});
         });
+        }
+        }
     }
-}
     render(){
         let post = <p>Please select a post</p>;
         if(this.props.id){

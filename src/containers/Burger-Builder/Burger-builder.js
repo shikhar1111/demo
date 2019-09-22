@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Aux from '../../hoc/props';
 import './Burger-builder.css'
 
-class Burger_Builder extends React.Component{
+class Burger_Builder extends Component{
     
     render(){
         
