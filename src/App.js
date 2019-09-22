@@ -5,7 +5,8 @@ import axios from "axios";
 
 class App extends React.Component {
   state = {
-    posts: []
+    posts: [],
+    selectedPostId: null
 }
 componentDidMount(){
     axios.get('https://jsonplaceholder.typicode.com/posts').then(response =>{
@@ -20,14 +21,24 @@ componentDidMount(){
         console.log(response);
     })
 }
+
+postSelectedHandler=(id)=>{
+  this.setState({selectedPostId:id})
+
+}
   render(){
     const posts = this.state.posts.map(post=>{
-      return <Burger title={post.title} author={post.author}/>;
+      return <Burger 
+       key={post.id}
+       title={post.title} 
+       author={post.author}
+       clicked={()=>this.postSelectedHandler(post.id)}/>;
   })
     return(
       <div>
         {/* <Layout></Layout> */}
         {posts}
+        <Layout id={this.state.selectedPostId}/>
 
           {/* <p>hello</p> */}
       </div>
